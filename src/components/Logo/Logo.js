@@ -12,12 +12,16 @@ const Logo = ({title, description}) => {
           marginBottom={5}
           marginTop={20}
         />
-        <Text fontSize={20} fontWeight="bold" color="#223263" marginBottom={1}>
+        <Text
+          fontSize={21}
+          fontFamily="Poppins-Bold"
+          color="#223263"
+          marginBottom={2}>
           {title}
         </Text>
         <Text
           fontSize={16}
-          fontWeight="normal"
+          fontFamily="Poppins-Regular"
           color="#9098B1"
           marginBottom={5}>
           {description}

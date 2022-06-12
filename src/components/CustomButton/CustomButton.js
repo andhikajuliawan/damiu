@@ -14,6 +14,7 @@ const CustomButton = ({
   variant,
   button,
   linkButton,
+  marginTop,
 }) => {
   return (
     <Center>
@@ -23,21 +24,25 @@ const CustomButton = ({
           variant={variant}
           width={width}
           backgroundColor={bgColor}>
-          <Text color={color} fontSize={fontSize} fontWeight="bold">
+          <Text
+            color={color}
+            fontSize={fontSize}
+            marginY={2}
+            fontFamily="Poppins-Bold">
             {textButton}
           </Text>
         </Button>
       ) : null}
       {linkButton ? (
-        <HStack marginTop={3}>
-          <Text fontSize="md" color="#9098B1">
+        <HStack marginTop={marginTop}>
+          <Text fontFamily="Poppins-Regular" fontSize={15} color="#9098B1">
             {text}
           </Text>
           <Text
             onPress={onPressText}
             color="#3EADE2"
-            fontSize="md"
-            fontWeight="bold">
+            fontFamily="Poppins-Bold"
+            fontSize={15}>
             {textLink}
           </Text>
         </HStack>

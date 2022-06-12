@@ -7,7 +7,12 @@ const DividerCostum = () => {
       <Box width="3%"></Box>
       <Box flex={1} height={0.3} backgroundColor="#9098B1" />
       <Box>
-        <Text width={50} textAlign="center" fontWeight="bold" color="#9098B1">
+        <Text
+          width={50}
+          textAlign="center"
+          fontFamily="Poppins-Bold"
+          fontSize={16}
+          color="#9098B1">
           OR
         </Text>
       </Box>

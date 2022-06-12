@@ -15,10 +15,10 @@ const ResetPasswordScreen = () => {
 
   const navigation = useNavigation();
 
-  const onSubmitPressed = () => {
+  const onSignInPressed = () => {
     navigation.navigate('SignIn');
   };
-  const onHomePressed = () => {
+  const onSignUpPressed = () => {
     navigation.navigate('SignUp');
   };
 
@@ -35,6 +35,8 @@ const ResetPasswordScreen = () => {
         size="lg"
         value={email}
         setValue={setEmail}
+        type="text"
+        icon="mail-outline"
       />
       <CustomInput
         variant="outline"
@@ -43,6 +45,8 @@ const ResetPasswordScreen = () => {
         size="lg"
         value={newPassword}
         setValue={setNewPassword}
+        type="password"
+        icon="lock-closed-outline"
       />
       <CustomInput
         variant="outline"
@@ -51,20 +55,36 @@ const ResetPasswordScreen = () => {
         size="lg"
         value={newRepeatPassword}
         setValue={setNewRepeatPassword}
+        type="password"
+        icon="lock-closed-outline"
       />
       <Box marginTop={4}></Box>
+
       <CustomButton
-        onPressButton={onSubmitPressed}
+        onPressButton={onSignInPressed}
         textButton="Confirm Password"
         bgColor="#3EADE2"
         width="95%"
-        fontSize="lg"
-        onPressText={onHomePressed}
-        text="have a account ? "
-        textLink="SignUp"
-        button={true}
-        linkButton={true}
+        fontSize={16}
+        text="Don't have a account ? "
+        textLink="Register"
         color="white"
+        button={true}
+        linkButton={false}
+      />
+
+      <CustomButton
+        textButton="Sign In"
+        bgColor="#3EADE2"
+        width="95%"
+        fontSize={15}
+        marginTop={3}
+        onPressText={onSignInPressed}
+        text="Don't have a account ? "
+        textLink="Register"
+        color="white"
+        button={false}
+        linkButton={true}
       />
     </ScrollView>
   );
