@@ -12,9 +12,10 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
+    "link": "^1.5.0",
     "native-base": "3.4.0",
     "react": "17.0.1",
-    "react-native": "0.64.2",
+    "react-native": "^0.64.2",
     "react-native-ionicons": "^4.6.5",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-screens": "^3.13.1",

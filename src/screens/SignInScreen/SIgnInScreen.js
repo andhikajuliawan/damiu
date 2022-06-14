@@ -4,11 +4,13 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 // components
-import CustomInput from '../../components/CustomInput';
-import CustomButton from '../../components/CustomButton';
-import Logo from '../../components/Logo';
-import CustomSocialMedia from '../../components/CustomSocialMedia/CustomSocialMedia';
-import DividerCostum from '../../components/DividerCostum/DividerCostum';
+import {
+  CustomButton,
+  CustomInput,
+  CustomSocialMedia,
+  DividerCostum,
+  Logo,
+} from '../../components/Authentication';
 
 const SignInScreen = () => {
   const [email, setEmail] = useState('');
@@ -27,87 +29,89 @@ const SignInScreen = () => {
   };
 
   return (
-    <ScrollView bgColor="white">
-      <Logo title="Let’s Get Started" description="Sign in to continue" />
+    <ScrollView bgColor="white" flex={1}>
+      <Box paddingY={10}>
+        <Logo title="Welcome to DAMIU" description="Sign in to continue" />
 
-      <CustomInput
-        variant="outline"
-        placeholder="Your Email"
-        width="95%"
-        size="lg"
-        value={email}
-        setValue={setEmail}
-        type="text"
-        icon="mail-outline"
-      />
-      <CustomInput
-        variant="outline"
-        placeholder="Password"
-        width="95%"
-        size="lg"
-        value={password}
-        setValue={setPassword}
-        type="password"
-        icon="lock-closed-outline"
-      />
+        <CustomInput
+          variant="outline"
+          placeholder="Your Email"
+          width="90%"
+          size="md"
+          value={email}
+          setValue={setEmail}
+          type="text"
+          icon="mail-outline"
+        />
+        <CustomInput
+          variant="outline"
+          placeholder="Password"
+          width="90%"
+          size="md"
+          value={password}
+          setValue={setPassword}
+          type="password"
+          icon="lock-closed-outline"
+        />
 
-      <Box marginTop={4}></Box>
+        <Box marginTop={4}></Box>
 
-      <CustomButton
-        onPressButton={onSubmitPressed}
-        textButton="Sign In"
-        bgColor="#3EADE2"
-        width="95%"
-        fontSize={16}
-        text="Don't have a account ? "
-        textLink="Register"
-        color="white"
-        button={true}
-        linkButton={false}
-      />
-      <DividerCostum />
+        <CustomButton
+          onPressButton={onSubmitPressed}
+          textButton="Sign In"
+          bgColor="#3EADE2"
+          width="90%"
+          fontSize={14}
+          text="Don't have a account ? "
+          textLink="Register"
+          color="white"
+          button={true}
+          linkButton={false}
+        />
+        <DividerCostum />
 
-      <CustomSocialMedia
-        textButton="Login with Google"
-        width="95%"
-        fontSize={16}
-        variant="outline"
-        color="#9098B1"
-        icon="logo-google"
-        socialAccount={false}
-      />
-      <CustomSocialMedia
-        textButton="Login with Facebook
-        "
-        width="95%"
-        fontSize={16}
-        variant="outline"
-        color="#9098B1"
-        icon="logo-facebook"
-        socialAccount={true}
-      />
+        <CustomSocialMedia
+          textButton="Login with Google"
+          width="90%"
+          fontSize={14}
+          variant="outline"
+          color="#9098B1"
+          icon="logo-google"
+          socialAccount={false}
+        />
+        <CustomSocialMedia
+          textButton="Login with Facebook
+  "
+          width="90%"
+          fontSize={14}
+          variant="outline"
+          color="#9098B1"
+          icon="logo-facebook"
+          socialAccount={true}
+        />
 
-      <CustomButton
-        textButton="Reset Password ?"
-        onPressButton={onResetPasswordPressed}
-        variant="unstyled"
-        color="#3EADE2"
-        fontSize={15}
-        button={true}
-      />
-      <CustomButton
-        textButton="Sign Up"
-        bgColor="#3EADE2"
-        width="95%"
-        fontSize={15}
-        marginTop={0}
-        onPressText={onRegisterPressed}
-        text="Don't have a account ? "
-        textLink="Register"
-        color="white"
-        button={false}
-        linkButton={true}
-      />
+        <CustomButton
+          textButton="Reset Password ?"
+          onPressButton={onResetPasswordPressed}
+          variant="unstyled"
+          color="#3EADE2"
+          fontSize={14}
+          button={true}
+        />
+        <CustomButton
+          textButton="Sign Up"
+          bgColor="#3EADE2"
+          width="95%"
+          fontSize={14}
+          marginTop={0}
+          onPressText={onRegisterPressed}
+          text="Don't have a account ? "
+          textLink="Register"
+          color="white"
+          button={false}
+          linkButton={true}
+        />
+      </Box>
     </ScrollView>
   );
 };
