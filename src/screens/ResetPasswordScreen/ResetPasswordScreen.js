@@ -1,5 +1,6 @@
-import {Box, ScrollView} from 'native-base';
-import React, {useState} from 'react';
+import {Box, ScrollView, Text} from 'native-base';
+import React, {useContext, useState} from 'react';
+import {AuthContext} from '../../context/AuthContext';
 // Navigation
 import {useNavigation} from '@react-navigation/native';
 
@@ -7,9 +8,10 @@ import {useNavigation} from '@react-navigation/native';
 import {CustomButton, CustomInput, Logo} from '../../components/Authentication';
 
 const ResetPasswordScreen = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [newRepeatPassword, setNewRepeatPassword] = useState('');
+  const val = useContext(AuthContext);
 
   const navigation = useNavigation();
 
@@ -29,14 +31,21 @@ const ResetPasswordScreen = () => {
         />
         <CustomInput
           variant="outline"
-          placeholder="Your Email"
+          placeholder="Username"
           width="90%"
           size="md"
-          value={email}
-          setValue={setEmail}
+          value={username}
+          setValue={setUsername}
           type="text"
-          icon="mail-outline"
+          icon="person-outline"
         />
+
+        <Box ml={5} my={1} justifyContent="center">
+          <Text ml={1} color="#FF0000" fontFamily="Poppins-Regular">
+            {val}
+          </Text>
+        </Box>
+
         <CustomInput
           variant="outline"
           placeholder="New Password"
@@ -47,6 +56,13 @@ const ResetPasswordScreen = () => {
           type="password"
           icon="lock-closed-outline"
         />
+
+        {/* <Box ml={5} my={1} justifyContent="center">
+          <Text ml={1} color="#FF0000" fontFamily="Poppins-Regular">
+            {val}
+          </Text>
+        </Box> */}
+
         <CustomInput
           variant="outline"
           placeholder="New Password Again"
@@ -57,6 +73,13 @@ const ResetPasswordScreen = () => {
           type="password"
           icon="lock-closed-outline"
         />
+
+        {/* <Box ml={5} my={1} justifyContent="center">
+          <Text ml={1} color="#FF0000" fontFamily="Poppins-Regular">
+            {val}
+          </Text>
+        </Box> */}
+
         <Box marginTop={4}></Box>
 
         <CustomButton

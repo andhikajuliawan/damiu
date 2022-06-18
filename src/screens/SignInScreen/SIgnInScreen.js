@@ -1,5 +1,19 @@
-import {Box, Text, ScrollView, Center, HStack, Divide} from 'native-base';
-import React, {useState} from 'react';
+import {
+  Box,
+  Text,
+  ScrollView,
+  Center,
+  HStack,
+  Divide,
+  VStack,
+} from 'native-base';
+import React, {useContext, useState} from 'react';
+import {AuthContext} from '../../context/AuthContext';
+import Spinner from 'react-native-loading-spinner-overlay';
+
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 // Navigation
 import {useNavigation} from '@react-navigation/native';
 
@@ -13,8 +27,9 @@ import {
 } from '../../components/Authentication';
 
 const SignInScreen = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const {isLoading, login} = useContext(AuthContext);
 
   const navigation = useNavigation();
 
@@ -35,29 +50,42 @@ const SignInScreen = () => {
 
         <CustomInput
           variant="outline"
-          placeholder="Your Email"
+          placeholder="Username"
           width="90%"
           size="md"
-          value={email}
-          setValue={setEmail}
+          value={username}
+          setValue={text => setUsername(text)}
           type="text"
-          icon="mail-outline"
+          icon="person-outline"
         />
+        {/* <Box ml={5} my={1} justifyContent="center">
+          <Text ml={1} color="#FF0000" fontFamily="Poppins-Regular">
+            {val}
+          </Text>
+        </Box> */}
         <CustomInput
           variant="outline"
           placeholder="Password"
           width="90%"
           size="md"
           value={password}
-          setValue={setPassword}
+          setValue={text => setPassword(text)}
           type="password"
           icon="lock-closed-outline"
         />
 
+        {/* <Box ml={5} my={1} justifyContent="center">
+          <Text ml={1} color="#FF0000" fontFamily="Poppins-Regular">
+            {val}
+          </Text>
+        </Box> */}
+
         <Box marginTop={4}></Box>
 
         <CustomButton
-          onPressButton={onSubmitPressed}
+          onPressButton={() => {
+            login(username, password);
+          }}
           textButton="Sign In"
           bgColor="#3EADE2"
           width="90%"

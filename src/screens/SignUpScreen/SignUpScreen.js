@@ -1,5 +1,6 @@
 import {Box, Text, ScrollView, Center} from 'native-base';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import {AuthContext} from '../../context/AuthContext';
 // Navigation
 import {useNavigation} from '@react-navigation/native';
 
@@ -14,15 +15,18 @@ import {
 
 const SignUpScreen = () => {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [customer_name, setCustomerName] = useState('');
+  const [customer_email, setCustomerEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
 
+  const {register} = useContext(AuthContext);
+
   const navigation = useNavigation();
 
-  const onSubmitPressed = () => {
-    navigation.navigate('SignIn');
-  };
+  // const onSubmitPressed = () => {
+  //   navigation.navigate('SignIn');
+  // };
   const onSignInPressed = () => {
     navigation.navigate('SignIn');
   };
@@ -33,7 +37,7 @@ const SignUpScreen = () => {
         <Logo title="Let’s Get Started" description="Create an new account" />
         <CustomInput
           variant="outline"
-          placeholder="Full Name"
+          placeholder="Username"
           width="90%"
           size="md"
           value={username}
@@ -41,16 +45,47 @@ const SignUpScreen = () => {
           type="text"
           icon="person-outline"
         />
+
+        {/* <Box ml={5} my={1} justifyContent="center">
+          <Text ml={1} color="#FF0000" fontFamily="Poppins-Regular">
+            {val}
+          </Text>
+        </Box> */}
+
+        <CustomInput
+          variant="outline"
+          placeholder="Full Name"
+          width="90%"
+          size="md"
+          value={customer_name}
+          setValue={setCustomerName}
+          type="text"
+          icon="person-outline"
+        />
+
+        {/* <Box ml={5} my={1} justifyContent="center">
+          <Text ml={1} color="#FF0000" fontFamily="Poppins-Regular">
+            {val}
+          </Text>
+        </Box> */}
+
         <CustomInput
           variant="outline"
           placeholder="Your Email"
           width="90%"
           size="md"
-          value={email}
-          setValue={setEmail}
+          value={customer_email}
+          setValue={setCustomerEmail}
           type="text"
           icon="mail-outline"
         />
+
+        {/* <Box ml={5} my={1} justifyContent="center">
+          <Text ml={1} color="#FF0000" fontFamily="Poppins-Regular">
+            {val}
+          </Text>
+        </Box> */}
+
         <CustomInput
           variant="outline"
           placeholder="Password"
@@ -61,6 +96,13 @@ const SignUpScreen = () => {
           type="password"
           icon="lock-closed-outline"
         />
+
+        {/* <Box ml={5} my={1} justifyContent="center">
+          <Text ml={1} color="#FF0000" fontFamily="Poppins-Regular">
+            {val}
+          </Text>
+        </Box> */}
+
         <CustomInput
           variant="outline"
           placeholder="Password Again"
@@ -71,10 +113,20 @@ const SignUpScreen = () => {
           type="password"
           icon="lock-closed-outline"
         />
+
+        {/* <Box ml={5} my={1} justifyContent="center">
+          <Text ml={1} color="#FF0000" fontFamily="Poppins-Regular">
+            {val}
+          </Text>
+        </Box> */}
+
         <Box marginTop={4}></Box>
 
         <CustomButton
-          onPressButton={onSubmitPressed}
+          onPressButton={() => {
+            register(username, customer_name, customer_email, password);
+            navigation.navigate('SignIn');
+          }}
           textButton="Sign Up"
           bgColor="#3EADE2"
           width="90%"

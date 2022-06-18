@@ -7,10 +7,21 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // import {MaterialIcons} from '@expo/vector-icons';
 
-const CustomInput = ({variant, placeholder, width, size, icon, type}) => {
+const CustomInput = ({
+  value,
+  setValue,
+  variant,
+  placeholder,
+  width,
+  size,
+  icon,
+  type,
+}) => {
   return (
     <Box alignItems="center">
       <Input
+        value={value}
+        onChangeText={setValue}
         variant={variant}
         placeholder={placeholder}
         my={1}

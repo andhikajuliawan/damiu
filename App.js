@@ -21,13 +21,17 @@ import {
   View,
 } from 'native-base';
 
+import { AuthProvider } from './src/context/AuthContext';
+
 import Navigation from './src/navigation';
 
 const App = () => {
   return (
-    <NativeBaseProvider flex="1">
-      <Navigation />
-    </NativeBaseProvider>
+    <AuthProvider>
+      <NativeBaseProvider flex="1">
+        <Navigation />
+      </NativeBaseProvider>
+    </AuthProvider>
   );
 };
 export default App;

@@ -8,7 +8,10 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import React from 'react';
+import React, {useContext} from 'react';
+import Spinner from 'react-native-loading-spinner-overlay';
+
+import {AuthContext} from '../../context/AuthContext';
 
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -40,12 +43,15 @@ const HomeScreen = () => {
     console.warn('Lihat Depo');
   };
 
+  // Untuk Logout
+  const {userInfo, isLoading, logout} = useContext(AuthContext);
+
   return (
     <>
       <Center>
         {/* Header  */}
         <CustomHeader
-          nameUser="Raisa"
+          nameUser={userInfo.user.username}
           onPressMail={onPressMail}
           onPressBasket={onPressBasket}
         />
@@ -53,7 +59,7 @@ const HomeScreen = () => {
       <ScrollView bgColor="#F9F9F9">
         {/* Box */}
         <Center>
-          <CustomBox onPressHubungkan={onPressHubungkan} />
+          <CustomBox onPressHubungkan={logout} />
         </Center>
 
         {/* Scroll Image */}
