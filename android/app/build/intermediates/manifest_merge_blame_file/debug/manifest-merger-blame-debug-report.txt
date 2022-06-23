@@ -9,58 +9,58 @@
 9        android:targetSdkVersion="29" />
 10
 11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-11-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\debug\AndroidManifest.xml:5:5-77
-11-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\debug\AndroidManifest.xml:5:22-75
+11-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/debug/AndroidManifest.xml:5:5-77
+11-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/debug/AndroidManifest.xml:5:22-75
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:4:5-67
-12-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:4:22-64
+12-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:4:5-67
+12-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:4:22-64
 13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-13-->[com.facebook.flipper:flipper:0.75.1] C:\Users\PRATAMARAMADHANIWIJA\.gradle\caches\transforms-2\files-2.1\a8f6015f96666ab8d93bfe5b64998bc8\jetified-flipper-0.75.1\AndroidManifest.xml:16:5-76
-13-->[com.facebook.flipper:flipper:0.75.1] C:\Users\PRATAMARAMADHANIWIJA\.gradle\caches\transforms-2\files-2.1\a8f6015f96666ab8d93bfe5b64998bc8\jetified-flipper-0.75.1\AndroidManifest.xml:16:22-73
+13-->[com.facebook.flipper:flipper:0.75.1] /Users/purnamaanaking/.gradle/caches/transforms-2/files-2.1/a8f6015f96666ab8d93bfe5b64998bc8/jetified-flipper-0.75.1/AndroidManifest.xml:16:5-76
+13-->[com.facebook.flipper:flipper:0.75.1] /Users/purnamaanaking/.gradle/caches/transforms-2/files-2.1/a8f6015f96666ab8d93bfe5b64998bc8/jetified-flipper-0.75.1/AndroidManifest.xml:16:22-73
 14
 15    <application
-15-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:6:5-24:19
+15-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:6:5-24:19
 16        android:name="com.testnativebase.MainApplication"
-16-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:7:7-38
+16-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:7:7-38
 17        android:allowBackup="false"
-17-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:11:7-34
+17-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:11:7-34
 18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-18-->[androidx.core:core:1.5.0] C:\Users\PRATAMARAMADHANIWIJA\.gradle\caches\transforms-2\files-2.1\eebedfd6526cd5539e0a44e6886856e3\core-1.5.0\AndroidManifest.xml:24:18-86
+18-->[androidx.core:core:1.5.0] /Users/purnamaanaking/.gradle/caches/transforms-2/files-2.1/eebedfd6526cd5539e0a44e6886856e3/core-1.5.0/AndroidManifest.xml:24:18-86
 19        android:debuggable="true"
 20        android:icon="@mipmap/ic_launcher"
-20-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:9:7-41
+20-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:9:7-41
 21        android:label="@string/app_name"
-21-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:8:7-39
+21-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:8:7-39
 22        android:roundIcon="@mipmap/ic_launcher_round"
-22-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:10:7-52
+22-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:10:7-52
 23        android:theme="@style/AppTheme"
-23-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:12:7-38
+23-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:12:7-38
 24        android:usesCleartextTraffic="true" >
-24-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\debug\AndroidManifest.xml:8:9-44
+24-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/debug/AndroidManifest.xml:8:9-44
 25        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-25-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\debug\AndroidManifest.xml:11:9-86
-25-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\debug\AndroidManifest.xml:11:19-83
+25-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/debug/AndroidManifest.xml:11:9-86
+25-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/debug/AndroidManifest.xml:11:19-83
 26        <activity
-26-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:13:7-23:18
+26-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:13:7-23:18
 27            android:name="com.testnativebase.MainActivity"
-27-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:14:9-37
+27-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:14:9-37
 28            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-28-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:16:9-86
+28-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:16:9-86
 29            android:label="@string/app_name"
-29-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:15:9-41
+29-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:15:9-41
 30            android:launchMode="singleTask"
-30-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:17:9-40
+30-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:17:9-40
 31            android:windowSoftInputMode="adjustResize" >
-31-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:18:9-51
+31-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:18:9-51
 32            <intent-filter>
-32-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:19:9-22:25
+32-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:19:9-22:25
 33                <action android:name="android.intent.action.MAIN" />
-33-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:20:13-65
-33-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:20:21-62
+33-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:20:13-65
+33-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:20:21-62
 34
 35                <category android:name="android.intent.category.LAUNCHER" />
-35-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:21:13-73
-35-->E:\Kuliah\Semester 6\RPL Capstone Project\UAS\Aplikasi\damiu\android\app\src\main\AndroidManifest.xml:21:23-70
+35-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:21:13-73
+35-->/Users/purnamaanaking/Documents/codes/damiu/android/app/src/main/AndroidManifest.xml:21:23-70
 36            </intent-filter>
 37        </activity>
 38    </application>

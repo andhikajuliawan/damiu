@@ -102,3 +102,13 @@ dist
 
 # TernJS port file
 .tern-port
+
+.idea
+out
+target
+*.iml
+log
+local.properties
+build
+android/libs
+/.gradle
