@@ -8,7 +8,7 @@ Aplikasi Mobile Depo Air Minum Isi Ulang
 - Install dependencies:
 
 ```bash
-npm run install --legacy-peer-deps
+npm install --legacy-peer-deps
 ```
 
 - Start metro
