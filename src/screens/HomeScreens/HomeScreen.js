@@ -56,7 +56,7 @@ const HomeScreen = () => {
           onPressBasket={onPressBasket}
         />
       </Center>
-      <ScrollView bgColor="#F9F9F9">
+      <ScrollView bgColor="#F9F9F9" showsVerticalScrollIndicator={false}>
         {/* Box */}
         <Center>
           <CustomBox onPressHubungkan={logout} />

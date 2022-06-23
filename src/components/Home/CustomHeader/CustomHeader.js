@@ -10,13 +10,10 @@ const CustomHeader = ({nameUser, onPressMail, onPressBasket}) => {
         marginTop={8}
         marginBottom={4}
         alignItems="center"
+        alignContent="center"
         justifyContent="space-between">
-        <Text
-          color="white"
-          fontSize={16}
-          // fontWeight="bold"
-          fontFamily="Poppins-SemiBold">
-          Selamat Datang, {nameUser}
+        <Text color="white" fontSize={16} fontFamily="Poppins-SemiBold">
+          Hi, {nameUser}
         </Text>
 
         <HStack>
