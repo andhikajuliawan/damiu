@@ -136,3 +136,7 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Android Builds
+android/app/build/
+
