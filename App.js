@@ -21,9 +21,9 @@ import {
   View,
 } from 'native-base';
 
-import { AuthProvider } from './src/context/AuthContext';
+import {AuthProvider} from './src/context/AuthContext';
 
-import Navigation from './src/navigation';
+import Navigation from './src/navigation/index';
 
 const App = () => {
   return (
