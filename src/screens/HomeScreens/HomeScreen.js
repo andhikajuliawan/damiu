@@ -22,7 +22,11 @@ import {
   CustomScrollImage,
 } from '../../components/Home';
 
+import {useNavigation} from '@react-navigation/native';
+
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
   // Function
   const onPressHubungkan = () => {
     console.warn('hubungkan');
@@ -31,7 +35,7 @@ const HomeScreen = () => {
     console.warn('Mail');
   };
   const onPressBasket = () => {
-    console.warn('Basket');
+    navigation.navigate('Keranjang');
   };
   const onPressIsiUlang = () => {
     console.warn('Isi Ulang');
@@ -39,15 +43,25 @@ const HomeScreen = () => {
   const onPressLihatSemua = () => {
     console.warn('Lihat Semua');
   };
-  const onPressDepo = () => {
-    console.warn('Lihat Depo');
-  };
+  // const onPressDepo = () => {
+  //   console.warn('Lihat Depo');
+  // };
 
   // Untuk Logout
   const {userInfo, isLoading, logout} = useContext(AuthContext);
 
+  // Data Dummy Store
+  const listDepo = [];
+  for (let index = 0; index < 10; index++) {
+    listDepo.push({
+      nama: 'Depo Mama Ami ke - ' + [index],
+      alamat: 'Jalan Wagir RT ' + [index] + ' RW ' + [index] + ' - Sidoarjo',
+      jarak: [index] + ' km',
+    });
+  }
+
   return (
-    <>
+    <Box>
       <Center>
         {/* Header  */}
         <CustomHeader
@@ -56,7 +70,10 @@ const HomeScreen = () => {
           onPressBasket={onPressBasket}
         />
       </Center>
-      <ScrollView bgColor="#F9F9F9" showsVerticalScrollIndicator={false}>
+      <ScrollView
+        bgColor="#F9F9F9"
+        showsVerticalScrollIndicator={false}
+        marginBottom={145}>
         {/* Box */}
         <Center>
           <CustomBox onPressHubungkan={logout} />
@@ -99,34 +116,23 @@ const HomeScreen = () => {
         <Text fontSize={14} fontWeight="bold" marginX={4}>
           Depo Terdekat Untuk Anda
         </Text>
-        <Box marginTop={4}>
+        {listDepo.map((depo, index) => (
           <CustomDepoTerdekat
-            nama="Depo Mama Ami"
-            alamat="Jalan Wagir RT 17 RW 03 - Sidoarjo"
-            jarak="0,5 km"
-            onPressDepo={onPressDepo}
+            key={index}
+            source={depo}
+            nama={depo.nama}
+            alamat={depo.alamat}
+            jarak={depo.jarak}
+            onPressDepo={() => {
+              navigation.navigate('Produk', {
+                nama: depo.nama,
+                alamat: depo.alamat,
+              });
+            }}
           />
-          <CustomDepoTerdekat
-            nama="Depo Mama Ami"
-            alamat="Jalan Wagir RT 17 RW 03 - Sidoarjo"
-            jarak="0,5 km"
-            onPressDepo={onPressDepo}
-          />
-          <CustomDepoTerdekat
-            nama="Depo Mama Ami"
-            alamat="Jalan Wagir RT 17 RW 03 - Sidoarjo"
-            jarak="0,5 km"
-            onPressDepo={onPressDepo}
-          />
-          <CustomDepoTerdekat
-            nama="Depo Mama Ami"
-            alamat="Jalan Wagir RT 17 RW 03 - Sidoarjo"
-            jarak="0,5 km"
-            onPressDepo={onPressDepo}
-          />
-        </Box>
+        ))}
       </ScrollView>
-    </>
+    </Box>
   );
 };
 
