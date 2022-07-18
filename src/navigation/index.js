@@ -12,6 +12,7 @@ import AkunScreen from '../screens/AkunScreen';
 import StoreScreen from '../screens/StoreScreen';
 import ProdukScreen from '../screens/ProdukScreen';
 import KeranjangScreen from '../screens/KeranjangScreen';
+import OrderDetailsScreen from '../screens/OrderDetailsScreen';
 
 // Navigation
 import {NavigationContainer} from '@react-navigation/native';
@@ -43,6 +44,7 @@ const Navigation = () => {
             <Stack.Screen name="Akun" component={AkunScreen} />
             <Stack.Screen name="Produk" component={ProdukScreen} />
             <Stack.Screen name="Keranjang" component={KeranjangScreen} />
+            <Stack.Screen name="OrderDetails" component={OrderDetailsScreen} />
           </>
         ) : (
           <>
@@ -69,7 +71,7 @@ export function Tabs() {
         tabBarInactiveTintColor: '#525252',
         tabBarStyle: {
           height: 70,
-          borderRadius: 20,
+          // borderRadius: 20,
           position: 'absolute',
         },
         tabBarIconStyle: {marginTop: 10},

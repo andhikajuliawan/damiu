@@ -18,13 +18,13 @@ const CustomHeader = ({nameUser, onPressMail, onPressBasket}) => {
 
         <HStack>
           <Ionicons name="mail" color="white" size={25} onPress={onPressMail} />
-          <Box marginX={2}></Box>
+          {/* <Box marginX={2}></Box>
           <Ionicons
             name="basket"
             color="white"
             size={25}
             onPress={onPressBasket}
-          />
+          /> */}
         </HStack>
       </HStack>
     </Box>

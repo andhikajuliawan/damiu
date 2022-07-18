@@ -1,4 +1,14 @@
-import {Image, Text, Box, ScrollView, HStack, VStack, Flex} from 'native-base';
+import {
+  Image,
+  Text,
+  Box,
+  ScrollView,
+  HStack,
+  VStack,
+  Flex,
+  AlertDialog,
+  Button,
+} from 'native-base';
 import React, {useState} from 'react';
 import {
   CustomDepoTerdekat,
@@ -48,6 +58,7 @@ const ProdukScreen = ({route}) => {
       <CustomHeader
         onPressMail={onPressMail}
         onPressBasket={onPressBasket}
+        keranjang={true}
         onPressBack={onPressBack}
         value={search}
         setValue={setSearch}

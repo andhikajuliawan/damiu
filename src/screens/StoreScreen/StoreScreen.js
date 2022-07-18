@@ -39,7 +39,7 @@ const StoreScreen = () => {
     <Box px={3} flex={1} bgColor="#fff">
       <CustomHeader
         onPressMail={onPressMail}
-        onPressBasket={onPressBasket}
+        // onPressBasket={onPressBasket}
         onPressBack={onPressBack}
         value={search}
         setValue={setSearch}

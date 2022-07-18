@@ -1,9 +1,10 @@
-import {HStack, Text, Divider, Image, VStack, Box} from 'native-base';
-import React, {useState, useEffect} from 'react';
+import {HStack, Text, Divider, Image, VStack, Box, Button} from 'native-base';
+import React, {useState, useEffect, useContext} from 'react';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {useNavigation} from '@react-navigation/native';
+import {AuthContext} from '../../context/AuthContext';
 
 const AkunScreen = () => {
   const navigation = useNavigation();
@@ -46,6 +47,9 @@ const AkunScreen = () => {
     return () => {};
   }, []);
 
+  // Untuk Logout
+  const {userInfo, isLoading, logout} = useContext(AuthContext);
+
   const user = [
     {
       nama: 'Pratama Ramadhani',
@@ -61,7 +65,7 @@ const AkunScreen = () => {
   const phoneEdit = user[0].phone;
 
   return (
-    <Box>
+    <Box bgColor="#fff" flex={1}>
       {/* <HStack mt={5} mb={4} alignItems="center" px={4}>
         <Ionicons
           name="chevron-back-outline"
@@ -94,13 +98,13 @@ const AkunScreen = () => {
               </Text>
             </VStack>
           </HStack>
-          <Ionicons
+          {/* <Ionicons
             name="create-outline"
             size={25}
             color="#9098B1"
             fontWeight="bold"
-            onPress={onPressEditAkun}
-          />
+            // onPress={onPressEditAkun}
+          /> */}
         </HStack>
         <HStack
           mt={50}
@@ -108,7 +112,7 @@ const AkunScreen = () => {
           alignItems="center"
           width="100%">
           <HStack width="40%">
-            <Ionicons name="calendar-outline" size={20} color="#40BFFF" />
+            <Ionicons name="calendar-outline" size={20} color="#3DADE2" />
             <Text
               ml={2}
               color="#223263"
@@ -128,7 +132,7 @@ const AkunScreen = () => {
         </HStack>
         <HStack mt={4} justifyContent="space-between" width="100%">
           <HStack width="40%">
-            <Ionicons name="mail-outline" size={20} color="#40BFFF" />
+            <Ionicons name="mail-outline" size={20} color="#3DADE2" />
             <Text
               ml={2}
               color="#223263"
@@ -152,7 +156,7 @@ const AkunScreen = () => {
           alignItems="center"
           width="100%">
           <HStack width="40%">
-            <Ionicons name="phone-portrait-outline" size={20} color="#40BFFF" />
+            <Ionicons name="phone-portrait-outline" size={20} color="#3DADE2" />
             <Text
               ml={2}
               color="#223263"
@@ -172,7 +176,7 @@ const AkunScreen = () => {
         </HStack>
         <HStack mt={4} justifyContent="space-between" width="100%">
           <HStack width="40%">
-            <Ionicons name="location-outline" size={20} color="#40BFFF" />
+            <Ionicons name="location-outline" size={20} color="#3DADE2" />
             <Text
               ml={2}
               width="60%"
@@ -192,6 +196,9 @@ const AkunScreen = () => {
           </Text>
         </HStack>
       </Box>
+      <Button mx={4} mt={8} bgColor="#3DADE2" onPress={logout}>
+        Logout
+      </Button>
     </Box>
   );
 };

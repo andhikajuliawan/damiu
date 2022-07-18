@@ -61,7 +61,7 @@ const HomeScreen = () => {
   }
 
   return (
-    <Box>
+    <Box bgColor="#fff" flex={1}>
       <Center>
         {/* Header  */}
         <CustomHeader
@@ -73,10 +73,10 @@ const HomeScreen = () => {
       <ScrollView
         bgColor="#F9F9F9"
         showsVerticalScrollIndicator={false}
-        marginBottom={145}>
+        marginBottom={70}>
         {/* Box */}
         <Center>
-          <CustomBox onPressHubungkan={logout} />
+          <CustomBox />
         </Center>
 
         {/* Scroll Image */}
