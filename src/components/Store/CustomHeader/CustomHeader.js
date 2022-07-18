@@ -11,7 +11,8 @@ const CustomHeader = ({
   value,
   setValue,
   onPressSearch,
-  placeholder,
+  placeholder, 
+  keranjang
 }) => {
   return (
     <HStack justifyContent="space-between" my={4} alignItems="center">
@@ -44,13 +45,14 @@ const CustomHeader = ({
       </HStack>
       <HStack>
         <Ionicons name="mail" color="#3DADE2" size={25} onPress={onPressMail} />
-        <Box marginX={1}></Box>
+        {keranjang ? <><Box marginX={1}></Box>
         <Ionicons
           name="basket"
           color="#3DADE2"
           size={25}
           onPress={onPressBasket}
-        />
+        /></> : null}
+        
       </HStack>
     </HStack>
   );
