@@ -8,10 +8,11 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import {AuthContext} from '../../context/AuthContext';
+import axios from 'axios';
 
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -26,6 +27,31 @@ import {useNavigation} from '@react-navigation/native';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [testing, setTesting] = useState([]);
+  console.log(testing);
+
+  useEffect(() => {
+    axios
+      .get(`https://damiusite.com/example-damiu/api/depo`, {
+        headers: {Authorization: `Bearer ${userInfo.token}`},
+      })
+      .then(res => res.data)
+      .then(data => setTesting(data.data))
+
+      .catch(e => {
+        console.log(`register error ${e}`);
+      });
+
+    // fetch(`https://damiusite.com/example-damiu/api/depo`, {
+    //   headers: {Authorization: `Bearer ${userInfo.token}`},
+    // })
+    //   .then(response => response.json())
+    //   .then(json => setTesting(json))
+    //   .catch(error => console.error(error));
+    // console.log(testing);
+
+    return () => {};
+  }, []);
 
   // Function
   const onPressHubungkan = () => {
@@ -116,13 +142,12 @@ const HomeScreen = () => {
         <Text fontSize={14} fontWeight="bold" marginX={4}>
           Depo Terdekat Untuk Anda
         </Text>
-        {listDepo.map((depo, index) => (
+        {testing.map((depo, index) => (
           <CustomDepoTerdekat
             key={index}
             source={depo}
-            nama={depo.nama}
-            alamat={depo.alamat}
-            jarak={depo.jarak}
+            nama={depo.depo_name}
+            alamat={depo.depo_city}
             onPressDepo={() => {
               navigation.navigate('Produk', {
                 nama: depo.nama,
