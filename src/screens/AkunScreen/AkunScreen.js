@@ -36,33 +36,8 @@ const AkunScreen = () => {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
 
-  useEffect(() => {
-    setNama(user[0].nama);
-    setAkun(user[0].akun);
-    setBirthday(user[0].birthday);
-    setEmail(user[0].email);
-    setPhone(user[0].phone);
-    setAddress(user[0].address);
-
-    return () => {};
-  }, []);
-
   // Untuk Logout
   const {userInfo, isLoading, logout} = useContext(AuthContext);
-
-  const user = [
-    {
-      nama: 'Pratama Ramadhani',
-      akun: '@ramadhani059',
-      birthday: '12 - 12 - 2000',
-      email: 'pratamaramadhani059@gmail.com',
-      phone: '4944737383999',
-      address: 'Jalan Wagir Baru II No 4F Kwangsan Sedati Sidoarjo',
-    },
-  ];
-
-  // memberi nomor +62
-  const phoneEdit = user[0].phone;
 
   return (
     <Box bgColor="#fff" flex={1}>
@@ -91,10 +66,10 @@ const AkunScreen = () => {
             />
             <VStack ml={3}>
               <Text color="#223263" fontFamily="Poppins-Bold" fontSize={16}>
-                {nama}
+                {userInfo.information.customer_name}
               </Text>
               <Text color="#9098B1" fontFamily="Poppins-Regular" fontSize={12}>
-                {akun}
+                @{userInfo.information.username}
               </Text>
             </VStack>
           </HStack>
@@ -112,26 +87,6 @@ const AkunScreen = () => {
           alignItems="center"
           width="100%">
           <HStack width="40%">
-            <Ionicons name="calendar-outline" size={20} color="#3DADE2" />
-            <Text
-              ml={2}
-              color="#223263"
-              fontFamily="Poppins-Bold"
-              fontSize={14}>
-              Birthday
-            </Text>
-          </HStack>
-          <Text
-            textAlign="right"
-            width="60%"
-            color="#9098B1"
-            fontFamily="Poppins-Regular"
-            fontSize={12}>
-            {birthday}
-          </Text>
-        </HStack>
-        <HStack mt={4} justifyContent="space-between" width="100%">
-          <HStack width="40%">
             <Ionicons name="mail-outline" size={20} color="#3DADE2" />
             <Text
               ml={2}
@@ -147,7 +102,7 @@ const AkunScreen = () => {
             color="#9098B1"
             fontFamily="Poppins-Regular"
             fontSize={12}>
-            {email}
+            {userInfo.information.customer_email}
           </Text>
         </HStack>
         <HStack
@@ -171,7 +126,7 @@ const AkunScreen = () => {
             color="#9098B1"
             fontFamily="Poppins-Regular"
             fontSize={12}>
-            {'+62 ' + phone.substring(1, 13)}
+            {userInfo.information.customer_phone}
           </Text>
         </HStack>
         <HStack mt={4} justifyContent="space-between" width="100%">
@@ -192,7 +147,7 @@ const AkunScreen = () => {
             color="#9098B1"
             fontFamily="Poppins-Regular"
             fontSize={12}>
-            {address}
+            {userInfo.information.customer_address}
           </Text>
         </HStack>
       </Box>
