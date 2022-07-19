@@ -27,7 +27,7 @@ const CustomDepoTerdekat = ({nama, alamat, jarak, onPressDepo}) => {
             size="sm"
             alt="icon-shop"
           />
-          <VStack marginLeft={2}>
+          <VStack marginLeft={2} width="70%">
             <Text fontSize={14} fontFamily="Poppins-Regular">
               {nama}
             </Text>
