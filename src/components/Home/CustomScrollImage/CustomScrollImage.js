@@ -29,6 +29,7 @@ const CustomScrollImage = () => {
         marginTop={5}
         width={width}
         height={height}
+        showsHorizontalScrollIndicator={false}
         onScroll={change}>
         <HStack>
           {images.map((image, index) => (

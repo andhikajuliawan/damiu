@@ -9,25 +9,25 @@ import {AuthContext} from '../../context/AuthContext';
 const AkunScreen = () => {
   const navigation = useNavigation();
 
-  const onPressEditAkun = () => {
-    user.splice(0, 1);
-    console.log(user[0]);
-    user.push({
-      nama: 'Achmad daffa',
-      akun: '@AchmadDaffa ',
-      birthday: '12 - 12 - 2001',
-      email: 'achmaddaffa@gmail.com',
-      phone: '4944737389999',
-      address: 'Jalan rungkut Baru II No 4F surabaya',
-    });
-    console.log(user[0]);
-    setNama(user[0].nama);
-    setAkun(user[0].akun);
-    setBirthday(user[0].birthday);
-    setEmail(user[0].email);
-    setPhone(user[0].phone);
-    setAddress(user[0].address);
-  };
+  // const onPressEditAkun = () => {
+  //   user.splice(0, 1);
+  //   console.log(user[0]);
+  //   user.push({
+  //     nama: 'Achmad daffa',
+  //     akun: '@AchmadDaffa ',
+  //     birthday: '12 - 12 - 2001',
+  //     email: 'achmaddaffa@gmail.com',
+  //     phone: '4944737389999',
+  //     address: 'Jalan rungkut Baru II No 4F surabaya',
+  //   });
+  //   console.log(user[0]);
+  //   setNama(user[0].nama);
+  //   setAkun(user[0].akun);
+  //   setBirthday(user[0].birthday);
+  //   setEmail(user[0].email);
+  //   setPhone(user[0].phone);
+  //   setAddress(user[0].address);
+  // };
 
   const [nama, setNama] = useState('');
   const [akun, setAkun] = useState('');

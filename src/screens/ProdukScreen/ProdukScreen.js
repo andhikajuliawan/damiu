@@ -9,25 +9,50 @@ import {
   AlertDialog,
   Button,
 } from 'native-base';
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   CustomDepoTerdekat,
   CustomHeader,
   CustomListProduk,
 } from '../../components/Store';
 
+// untuk keperluan axios
+import {AuthContext} from '../../context/AuthContext';
+import axios from 'axios';
+import {BASE_URL} from '../../config';
+
 import {useNavigation} from '@react-navigation/native';
 
 const ProdukScreen = ({route}) => {
   const [search, setSearch] = useState('');
+  const [produkDepo, setProdukDepo] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/product/${route.params.depo_id}`, {
+        headers: {Authorization: `Bearer ${userInfo.token}`},
+      })
+      .then(res => res.data)
+      .then(data => setProdukDepo(data.data))
+
+      .catch(e => {
+        console.log(`register error ${e}`);
+      });
+
+    return () => {};
+  }, []);
 
   const navigation = useNavigation();
 
   const onPressMail = () => {
-    console.warn('mail');
+    console.warn(produkDepo);
   };
   const onPressBasket = () => {
-    navigation.navigate('Keranjang');
+    navigation.navigate('Keranjang', {
+      depo_id: route.params.depo_id,
+      nama: route.params.nama,
+      alamat: route.params.alamat,
+    });
   };
   const onPressBack = () => {
     navigation.goBack();
@@ -40,15 +65,17 @@ const ProdukScreen = ({route}) => {
   };
 
   // Data Dummy Store
-  const listProduk = [];
-  for (let index = 0; index < 10; index++) {
-    listProduk.push({
-      nama: 'Air Minum - ' + [index + 1],
-      harga: [index + 3000],
-      stock: [index + 2],
-      // gambar: require('../../../assets/images/icon-shop.png'),
-    });
-  }
+  // const listProduk = [];
+  // for (let index = 0; index < 10; index++) {
+  //   listProduk.push({
+  //     nama: 'Air Minum - ' + [index + 1],
+  //     harga: [index + 3000],
+  //     stock: [index + 2],
+  //     // gambar: require('../../../assets/images/icon-shop.png'),
+  //   });
+  // }
+
+  const {userInfo, isLoading, logout} = useContext(AuthContext);
 
   // membatasi teks di Place Holder
   const placeholder = `cari di  ${route.params.nama}`;
@@ -92,15 +119,15 @@ const ProdukScreen = ({route}) => {
           Semua Produk
         </Text>
         <Flex direction="row" flexWrap="wrap" justifyContent="space-around">
-          {listProduk.map((produk, index) => (
+          {produkDepo.map((produk, index) => (
             <CustomListProduk
               key={index}
               source={produk}
               // digunakan mengambil gambar
               // gambar={produk.gambar}
-              nama={produk.nama}
-              harga={produk.harga}
-              stock={produk.stock}
+              nama={produk.product_name}
+              harga={produk.product_price}
+              stock={produk.product_stock}
               onPressAddProduct={onPressAddProduct}
             />
           ))}
