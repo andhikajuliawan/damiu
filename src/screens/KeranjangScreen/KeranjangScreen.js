@@ -9,13 +9,18 @@ import {
   AlertDialog,
   ScrollView,
 } from 'native-base';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {CustomListProduk} from '../../components/Keranjang';
 import {useNavigation} from '@react-navigation/native';
 
-const KeranjangScreen = () => {
+// untuk keperluan axios
+import {AuthContext} from '../../context/AuthContext';
+import axios from 'axios';
+import {BASE_URL} from '../../config';
+
+const KeranjangScreen = ({route}) => {
   const navigation = useNavigation();
 
   const [listReload, setListReload] = useState([]);
@@ -26,6 +31,9 @@ const KeranjangScreen = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const onClose = () => setIsOpen(false);
   const cancelRef = React.useRef(null);
+
+  // Untuk Ambil Data akun
+  const {userInfo, isLoading, logout} = useContext(AuthContext);
 
   useEffect(() => {
     // Data Dummy
@@ -95,10 +103,10 @@ const KeranjangScreen = () => {
             />
             <VStack marginLeft={2}>
               <Text fontSize={12} fontFamily="Poppins-Regular">
-                Depo Mama Ami
+                {route.params.nama}
               </Text>
               <Text fontSize={10} fontFamily="Poppins-Regular">
-                Jalan Wagir RT 17 RW 03 - Sidoarjo
+                {route.params.alamat}
               </Text>
             </VStack>
           </HStack>
@@ -106,16 +114,16 @@ const KeranjangScreen = () => {
 
         <Box mx={4} px={5} py={2} bg="#fff" borderRadius={10} shadow={3} mt={3}>
           <Text fontSize={12} fontFamily="Poppins-Bold" mb={2}>
-            Alamat Pengiriman{' '}
+            Alamat Pengiriman
           </Text>
           <Text fontSize={12} fontFamily="Poppins-SemiBold" mb={2}>
-            Pratama Ramadhani Wijaya{' '}
+            {userInfo.information.customer_name}
           </Text>
           <Text fontSize={10} fontFamily="Poppins-Regular" mb={2}>
-            (+62) 85815554360{' '}
+            {userInfo.information.customer_phone}
           </Text>
           <Text fontSize={10} fontFamily="Poppins-Regular" mb={2}>
-            Jalan Wagir Baru II No 4F Kwangsan Sedati Sidoarjo{' '}
+            {userInfo.information.customer_address}
           </Text>
         </Box>
         <Box mx={4} px={5} py={2} bg="#fff" borderRadius={10} shadow={3} mt={3}>

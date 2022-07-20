@@ -11,8 +11,10 @@ import {
 import React, {useContext, useEffect, useState} from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 
+// untuk keperluan axios
 import {AuthContext} from '../../context/AuthContext';
 import axios from 'axios';
+import {BASE_URL} from '../../config';
 
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -27,16 +29,15 @@ import {useNavigation} from '@react-navigation/native';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const [testing, setTesting] = useState([]);
-  console.log(testing);
+  const [listDepo, setListDepo] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`https://damiusite.com/example-damiu/api/depo`, {
+      .get(`${BASE_URL}/depo`, {
         headers: {Authorization: `Bearer ${userInfo.token}`},
       })
       .then(res => res.data)
-      .then(data => setTesting(data.data))
+      .then(data => setListDepo(data.data))
 
       .catch(e => {
         console.log(`register error ${e}`);
@@ -77,14 +78,14 @@ const HomeScreen = () => {
   const {userInfo, isLoading, logout} = useContext(AuthContext);
 
   // Data Dummy Store
-  const listDepo = [];
-  for (let index = 0; index < 10; index++) {
-    listDepo.push({
-      nama: 'Depo Mama Ami ke - ' + [index],
-      alamat: 'Jalan Wagir RT ' + [index] + ' RW ' + [index] + ' - Sidoarjo',
-      jarak: [index] + ' km',
-    });
-  }
+  // const listDepoDumy = [];
+  // for (let index = 0; index < 10; index++) {
+  //   listDepo.push({
+  //     nama: 'Depo Mama Ami ke - ' + [index],
+  //     alamat: 'Jalan Wagir RT ' + [index] + ' RW ' + [index] + ' - Sidoarjo',
+  //     jarak: [index] + ' km',
+  //   });
+  // }
 
   return (
     <Box bgColor="#fff" flex={1}>
@@ -142,7 +143,7 @@ const HomeScreen = () => {
         <Text fontSize={14} fontWeight="bold" marginX={4}>
           Depo Terdekat Untuk Anda
         </Text>
-        {testing.map((depo, index) => (
+        {listDepo.map((depo, index) => (
           <CustomDepoTerdekat
             key={index}
             source={depo}
@@ -150,8 +151,9 @@ const HomeScreen = () => {
             alamat={depo.depo_city}
             onPressDepo={() => {
               navigation.navigate('Produk', {
-                nama: depo.nama,
-                alamat: depo.alamat,
+                nama: depo.depo_name,
+                alamat: depo.depo_city,
+                depo_id: depo.id,
               });
             }}
           />
