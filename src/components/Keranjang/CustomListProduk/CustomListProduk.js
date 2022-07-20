@@ -1,33 +1,96 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {HStack, Image, VStack, Text, Box, Pressable} from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const CustomListProduk = ({
-  onPressDeleteProduk,
-  namaProduk,
-  hargaProduk,
-  jumlah,
-}) => {
+import {AuthContext} from '../../../context/AuthContext';
+import axios from 'axios';
+import {BASE_URL} from '../../../config';
+
+import {useNavigation} from '@react-navigation/native';
+
+const CustomListProduk = ({namaProduk, hargaProduk, jumlah, produk_id}) => {
+  const navigation = useNavigation();
+
   const [number, setNumber] = useState();
   const [harga, setHarga] = useState();
 
   useEffect(() => {
-    setNumber(jumlah);
-    setHarga(hargaProduk);
+    setNumber(parseInt(jumlah));
+    setHarga(parseInt(hargaProduk));
     return () => {};
   }, []);
 
   const onPressAddProduk = () => {
-    setNumber(number + 1);
-    setHarga(harga + harga / number);
+    const tambah = number + 1;
+    setNumber(tambah);
+    const hargaTambah = harga + harga / number;
+    setHarga(hargaTambah);
+
+    axios
+      .put(
+        `${BASE_URL}/cart/${produk_id}`,
+        {
+          product_amount: tambah,
+          product_price: hargaTambah,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(res => console.log(res))
+      .catch(e => {
+        console.log(`register error ${e}`);
+      });
   };
   const onPressReduceProduk = () => {
-    if (number == 1) {
-    } else {
-      setNumber(number - 1);
-      setHarga(harga - harga / number);
-    }
+    // if (number == 1) {
+    // } else {
+    const kurang = number - 1;
+    setNumber(kurang);
+    const hargaKurang = harga - harga / number;
+    setHarga(hargaKurang);
+    // }
+
+    axios
+      .put(
+        `${BASE_URL}/cart/${produk_id}`,
+        {
+          product_amount: kurang,
+          product_price: hargaKurang,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(res => console.log(res))
+      .catch(e => {
+        console.log(`register error ${e}`);
+      });
   };
+  const onPressDeleteProduk = () => {
+    axios
+      .delete(`${BASE_URL}/cart/${produk_id}`, {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(res => console.log(res))
+      .catch(e => {
+        console.log(`register error ${e}`);
+      });
+  };
+
+  const {userInfo, isLoading, logout} = useContext(AuthContext);
 
   return (
     <HStack bgColor="#fff" mx={4} borderRadius={10} shadow={3} py={2} mt={3}>
