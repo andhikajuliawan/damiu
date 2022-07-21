@@ -47,33 +47,33 @@ const CustomListProduk = ({namaProduk, hargaProduk, jumlah, produk_id}) => {
       });
   };
   const onPressReduceProduk = () => {
-    // if (number == 1) {
-    // } else {
-    const kurang = number - 1;
-    setNumber(kurang);
-    const hargaKurang = harga - harga / number;
-    setHarga(hargaKurang);
-    // }
+    if (number == 1) {
+    } else {
+      const kurang = number - 1;
+      setNumber(kurang);
+      const hargaKurang = harga - harga / number;
+      setHarga(hargaKurang);
 
-    axios
-      .put(
-        `${BASE_URL}/cart/${produk_id}`,
-        {
-          product_amount: kurang,
-          product_price: hargaKurang,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
+      axios
+        .put(
+          `${BASE_URL}/cart/${produk_id}`,
+          {
+            product_amount: kurang,
+            product_price: hargaKurang,
           },
-        },
-      )
-      .then(res => console.log(res))
-      .catch(e => {
-        console.log(`register error ${e}`);
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${userInfo.token}`,
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+          },
+        )
+        .then(res => console.log(res))
+        .catch(e => {
+          console.log(`register error ${e}`);
+        });
+    }
   };
   const onPressDeleteProduk = () => {
     axios

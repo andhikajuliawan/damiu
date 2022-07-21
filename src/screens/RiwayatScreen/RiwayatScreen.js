@@ -1,4 +1,4 @@
-import {Text, Box, HStack, Divider} from 'native-base';
+import {Text, Box, HStack, Divider, ScrollView} from 'native-base';
 import React, {useEffect, useState, useContext} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CustomListPembelian from '../../components/Riwayat/CustomListPembelian/CustomListPembelian';
@@ -53,21 +53,20 @@ const RiwayatScreen = () => {
         </Text>
       </HStack>
       <Divider thickness={0.5} />
-      {/* <CustomListPembelian
-  onPressDetails={onPressDeatils}
-  /> */}
-      {listRiwayatPembelian.map((list, index) => (
-        <CustomListPembelian
-          key={index}
-          source={list}
-          order={list.no_order}
-          tanggal={list.order_datetime}
-          jumlah={list.order_total_product}
-          harga={list.order_price}
-          status={list.order_status}
-          onPressDetails={onPressDeatils}
-        />
-      ))}
+      <ScrollView showsVerticalScrollIndicator={false} bgColor="#fff" mb={69}>
+        {listRiwayatPembelian.map((list, index) => (
+          <CustomListPembelian
+            key={index}
+            source={list}
+            order={list.no_order}
+            tanggal={list.order_datetime}
+            jumlah={list.order_total_product}
+            harga={list.order_price}
+            status={list.order_status}
+            onPressDetails={onPressDeatils}
+          />
+        ))}
+      </ScrollView>
     </Box>
   );
 };
