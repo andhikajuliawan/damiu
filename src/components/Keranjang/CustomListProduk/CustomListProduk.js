@@ -8,7 +8,13 @@ import {BASE_URL} from '../../../config';
 
 import {useNavigation} from '@react-navigation/native';
 
-const CustomListProduk = ({namaProduk, hargaProduk, jumlah, produk_id}) => {
+const CustomListProduk = ({
+  namaProduk,
+  hargaProduk,
+  jumlah,
+  produk_id,
+  depo_id,
+}) => {
   const navigation = useNavigation();
 
   const [number, setNumber] = useState();
@@ -26,25 +32,25 @@ const CustomListProduk = ({namaProduk, hargaProduk, jumlah, produk_id}) => {
     const hargaTambah = harga + harga / number;
     setHarga(hargaTambah);
 
-    axios
-      .put(
-        `${BASE_URL}/cart/${produk_id}`,
-        {
-          product_amount: tambah,
-          product_price: hargaTambah,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-        },
-      )
-      .then(res => console.log(res))
-      .catch(e => {
-        console.log(`register error ${e}`);
-      });
+    // axios
+    //   .put(
+    //     `${BASE_URL}/cart/${produk_id}`,
+    //     {
+    //       product_amount: tambah,
+    //       product_price: hargaTambah,
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${userInfo.token}`,
+    //         Accept: 'application/json',
+    //         'Content-Type': 'application/json',
+    //       },
+    //     },
+    //   )
+    //   .then(res => console.log(res))
+    //   .catch(e => {
+    //     console.log(`register error ${e}`);
+    //   });
   };
   const onPressReduceProduk = () => {
     if (number == 1) {
@@ -88,9 +94,11 @@ const CustomListProduk = ({namaProduk, hargaProduk, jumlah, produk_id}) => {
       .catch(e => {
         console.log(`register error ${e}`);
       });
+
+    getListKeranjang(depo_id);
   };
 
-  const {userInfo, isLoading, logout} = useContext(AuthContext);
+  const {userInfo} = useContext(AuthContext);
 
   return (
     <HStack bgColor="#fff" mx={4} borderRadius={10} shadow={3} py={2} mt={3}>

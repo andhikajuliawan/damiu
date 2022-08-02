@@ -1,4 +1,4 @@
-import {Button, Center, Text, HStack} from 'native-base';
+import {Button, Center, Text, HStack, Spinner} from 'native-base';
 import React from 'react';
 
 const CustomButton = ({
@@ -15,6 +15,7 @@ const CustomButton = ({
   button,
   linkButton,
   marginTop,
+  isLoading,
 }) => {
   return (
     <Center>
@@ -29,7 +30,7 @@ const CustomButton = ({
             fontSize={fontSize}
             marginY={2}
             fontFamily="Poppins-Bold">
-            {textButton}
+            {isLoading ? <Spinner color="#fff" /> : textButton}
           </Text>
         </Button>
       ) : null}
