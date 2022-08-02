@@ -140,7 +140,7 @@ const HomeScreen = () => {
         </HStack>
 
         {/* Depo terdekat */}
-        <Text fontSize={14} fontWeight="bold" marginX={4}>
+        <Text fontSize={14} fontWeight="bold" marginX={4} mb={3}>
           Depo Terdekat Untuk Anda
         </Text>
         {listDepo.map((depo, index) => (

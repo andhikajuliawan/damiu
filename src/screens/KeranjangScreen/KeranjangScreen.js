@@ -23,7 +23,7 @@ import {BASE_URL} from '../../config';
 const KeranjangScreen = ({route}) => {
   const navigation = useNavigation();
 
-  const [listReload, setListReload] = useState([]);
+  const [listKeranjang, setListKeranjang] = useState([]);
   const [hargaOngkosKirim, setHargaOngkosKirim] = useState([]);
   const [hargaSubTotal, setHargaSubTotal] = useState([]);
 
@@ -36,21 +36,67 @@ const KeranjangScreen = ({route}) => {
   const {userInfo, isLoading, logout} = useContext(AuthContext);
 
   useEffect(() => {
-    // Data Dummy
-    const listKeranjang = [
-      {namaProduk: 'Club air Mineral 600ml', jumlah: 1, harga: 3500},
-      {namaProduk: 'Club air Mineral 1000ml', jumlah: 1, harga: 6000},
-    ];
+    axios
+      .get(`${BASE_URL}/cart/${route.params.depo_id}`, {
+        headers: {Authorization: `Bearer ${userInfo.token}`},
+      })
+      .then(res => res.data)
+      .then(data => setListKeranjang(data.data))
+      .catch(e => {
+        console.log(`register error ${e}`);
+      });
 
-    const ongkosKirim = 3000;
-    const subTotal = 9500;
+    const ongkosKirim = 2000;
 
-    setListReload(listKeranjang);
     setHargaOngkosKirim(ongkosKirim);
-    setHargaSubTotal(subTotal);
 
     return () => {};
   }, []);
+
+  let subTotal = 0;
+  for (let index = 0; index < listKeranjang.length; index++) {
+    subTotal += parseInt(listKeranjang[index].product_price);
+  }
+
+  const onPressBeli = () => {
+    setIsOpen(!isOpen);
+
+    onPressBeliProduk();
+  };
+
+  const onPressBeliProduk = () => {
+    console.log(
+      userInfo.information.id,
+      route.params.depo_id,
+      listKeranjang.length,
+      hargaOngkosKirim + subTotal,
+      userInfo.information.customer_address,
+    );
+
+    axios
+      .post(
+        `${BASE_URL}/customer_order`,
+        {
+          customer_id: userInfo.information.id,
+          depo_id: route.params.depo_id,
+          order_total_product: listKeranjang.length,
+          order_price: hargaOngkosKirim + subTotal,
+          order_location: userInfo.information.customer_address,
+          order_status: 'Berhasil',
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(res => console.log(res))
+      .catch(e => {
+        console.log(`register error ${e}`);
+      });
+  };
 
   return (
     <Box flex={1} bgColor="#fff">
@@ -69,22 +115,14 @@ const KeranjangScreen = ({route}) => {
       </HStack>
       <Divider thickness={0.5} />
       <ScrollView>
-        {listReload.map((list, index) => (
+        {listKeranjang.map((list, index) => (
           <CustomListProduk
             key={index}
             source={list}
+            produk_id={list.id}
             namaProduk={list.namaProduk}
-            jumlah={list.jumlah}
-            hargaProduk={list.harga}
-            // onPressDeleteProduk={
-            //   (reloadlist = () => {
-            //     console.warn('delete');
-            //     let index = listReload.indexOf(list);
-            //     listReload.splice(index, 1);
-            //     console.log(listReload);
-            //   })
-
-            // }
+            jumlah={list.product_amount}
+            hargaProduk={list.product_price}
           />
         ))}
         <Box mx={4} px={5} py={2} bg="#fff" borderRadius={10} shadow={3} mt={3}>
@@ -111,7 +149,7 @@ const KeranjangScreen = ({route}) => {
             </VStack>
           </HStack>
         </Box>
-
+        {/* <Button onPress={testing}>tes</Button> */}
         <Box mx={4} px={5} py={2} bg="#fff" borderRadius={10} shadow={3} mt={3}>
           <Text fontSize={12} fontFamily="Poppins-Bold" mb={2}>
             Alamat Pengiriman
@@ -136,7 +174,7 @@ const KeranjangScreen = ({route}) => {
               Subtotal
             </Text>
             <Text fontSize={12} fontFamily="Poppins-Regular" mb={2}>
-              Rp. 9500
+              Rp. {subTotal}
             </Text>
           </HStack>
           <HStack justifyContent="space-between">
@@ -177,7 +215,7 @@ const KeranjangScreen = ({route}) => {
               fontFamily="Poppins-Bold"
               mb={2}
               color="#40BFFF">
-              Rp. {hargaOngkosKirim + hargaSubTotal}
+              Rp. {hargaOngkosKirim + subTotal}
             </Text>
           </HStack>
         </Box>
@@ -187,7 +225,7 @@ const KeranjangScreen = ({route}) => {
           mt={4}
           mb={4}
           borderRadius={10}
-          onPress={() => setIsOpen(!isOpen)}>
+          onPress={onPressBeli}>
           <Text fontSize={14} color="#fff" fontFamily="Poppins-Bold" my={1}>
             Beli
           </Text>

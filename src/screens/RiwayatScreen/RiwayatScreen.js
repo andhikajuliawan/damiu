@@ -1,9 +1,14 @@
-import {View, Text, Box, HStack, Divider, Button} from 'native-base';
-import React, {useEffect, useState} from 'react';
+import {Text, Box, HStack, Divider, ScrollView} from 'native-base';
+import React, {useEffect, useState, useContext} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import CustomListPembelian from '../../components/Riwayat/CustomListPembelian/CustomListPembelian';
 import {useNavigation} from '@react-navigation/native';
 import OrderDetailsScreen from '../OrderDetailsScreen';
+
+// untuk keperluan axios
+import {AuthContext} from '../../context/AuthContext';
+import axios from 'axios';
+import {BASE_URL} from '../../config';
 
 const RiwayatScreen = () => {
   const navigation = useNavigation();
@@ -11,13 +16,17 @@ const RiwayatScreen = () => {
   const [listRiwayatPembelian, setListRiwayatPembelian] = useState([]);
 
   useEffect(() => {
-    // Data Dummy
-    const listPembelian = [
-      {order: 6475, tanggal: '14-05-2022', jumlah: 1, harga: 17000},
-      {order: 6476, tanggal: '16-05-2022', jumlah: 5, harga: 20000},
-    ];
+    console.log(userInfo.information.id);
+    axios
+      .get(`${BASE_URL}/riwayat_pembelian/${userInfo.information.id}`, {
+        headers: {Authorization: `Bearer ${userInfo.token}`},
+      })
+      .then(res => res.data)
+      .then(data => setListRiwayatPembelian(data.data))
 
-    setListRiwayatPembelian(listPembelian);
+      .catch(e => {
+        console.log(`register error ${e}`);
+      });
 
     return () => {};
   }, []);
@@ -25,6 +34,8 @@ const RiwayatScreen = () => {
   const onPressDeatils = () => {
     navigation.navigate('OrderDetails');
   };
+
+  const {userInfo, isLoading, logout} = useContext(AuthContext);
 
   return (
     <Box bgColor="#fff" flex={1}>
@@ -42,20 +53,20 @@ const RiwayatScreen = () => {
         </Text>
       </HStack>
       <Divider thickness={0.5} />
-      {/* <CustomListPembelian
-  onPressDetails={onPressDeatils}
-  /> */}
-      {listRiwayatPembelian.map((list, index) => (
-        <CustomListPembelian
-          key={index}
-          source={list}
-          order={list.order}
-          tanggal={list.tanggal}
-          jumlah={list.jumlah}
-          harga={list.harga}
-          onPressDetails={onPressDeatils}
-        />
-      ))}
+      <ScrollView showsVerticalScrollIndicator={false} bgColor="#fff" mb={69}>
+        {listRiwayatPembelian.map((list, index) => (
+          <CustomListPembelian
+            key={index}
+            source={list}
+            order={list.no_order}
+            tanggal={list.order_datetime}
+            jumlah={list.order_total_product}
+            harga={list.order_price}
+            status={list.order_status}
+            onPressDetails={onPressDeatils}
+          />
+        ))}
+      </ScrollView>
     </Box>
   );
 };

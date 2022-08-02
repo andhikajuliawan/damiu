@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useContext} from 'react';
 import {
   VStack,
   Image,
@@ -11,11 +11,58 @@ import {
 } from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const CustomListProduk = ({nama, harga, stock, onPressAddProduct}) => {
+// untuk keperluan axios
+import {AuthContext} from '../../../context/AuthContext';
+import axios from 'axios';
+import {BASE_URL} from '../../../config';
+
+const CustomListProduk = ({
+  customer_id,
+  depo_id,
+  produk_id,
+  nama,
+  harga,
+  stock,
+  // onPressAddProduct,
+}) => {
   // Alert Dialog
   const [isOpen, setIsOpen] = React.useState(false);
   const onClose = () => setIsOpen(false);
   const cancelRef = React.useRef(null);
+
+  const onPressAddProduct1 = () => {
+    setIsOpen(!isOpen);
+
+    onPressAddProduct();
+  };
+
+  const onPressAddProduct = () => {
+    console.log(customer_id, depo_id, produk_id, nama, harga);
+    axios
+      .post(
+        `${BASE_URL}/cart`,
+        {
+          customer_id: customer_id,
+          depo_id: depo_id,
+          product_id: produk_id,
+          product_amount: 1,
+          product_price: harga,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(res => console.log(res))
+      .catch(e => {
+        console.log(`register error ${e}`);
+      });
+  };
+
+  const {userInfo, isLoading, logout} = useContext(AuthContext);
 
   return (
     <VStack
@@ -51,7 +98,7 @@ const CustomListProduk = ({nama, harga, stock, onPressAddProduct}) => {
         </Text>
       </VStack>
       <Divider my={2} />
-      <Pressable onPress={(onPressAddProduct, () => setIsOpen(!isOpen))}>
+      <Pressable onPress={onPressAddProduct1}>
         <HStack
           py={2}
           mb={1}
@@ -62,7 +109,7 @@ const CustomListProduk = ({nama, harga, stock, onPressAddProduct}) => {
           alignItems="center"
           justifyContent="center">
           <Ionicons name="add-outline" color="white" size={20} />
-          <Text color="white" fontFamily="Poppins-Bold" fontSize={12} a>
+          <Text color="white" fontFamily="Poppins-Bold" fontSize={12}>
             Keranjang
           </Text>
         </HStack>

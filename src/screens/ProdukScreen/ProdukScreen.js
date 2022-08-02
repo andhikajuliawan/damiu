@@ -60,9 +60,11 @@ const ProdukScreen = ({route}) => {
   const onPressSearch = () => {
     // render halaman
   };
-  const onPressAddProduct = () => {
-    console.warn('product ditambahkan');
-  };
+
+  // const onPressAddProduct = () => {
+  //   console.log();
+  //   axios;
+  // };
 
   // Data Dummy Store
   // const listProduk = [];
@@ -90,7 +92,7 @@ const ProdukScreen = ({route}) => {
         value={search}
         setValue={setSearch}
         onPressSearch={onPressSearch}
-        placeholder={placeholder.substring(0, 20) + '.....'}
+        placeholder={placeholder.substring(0, 30) + '.....'}
       />
       <HStack
         alignItems="center"
@@ -125,10 +127,13 @@ const ProdukScreen = ({route}) => {
               source={produk}
               // digunakan mengambil gambar
               // gambar={produk.gambar}
+              customer_id={userInfo.information.id}
+              produk_id={produk.id}
+              depo_id={route.params.depo_id}
               nama={produk.product_name}
               harga={produk.product_price}
               stock={produk.product_stock}
-              onPressAddProduct={onPressAddProduct}
+              // onPressAddProduct={onPressAddProduct}
             />
           ))}
         </Flex>
