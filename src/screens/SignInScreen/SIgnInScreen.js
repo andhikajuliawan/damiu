@@ -91,6 +91,7 @@ const SignInScreen = () => {
           width="90%"
           fontSize={14}
           text="Don't have a account ? "
+          isLoading={isLoading}
           textLink="Register"
           color="white"
           button={true}

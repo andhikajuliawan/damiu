@@ -13,6 +13,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 // untuk keperluan axios
 import {AuthContext} from '../../context/AuthContext';
+import {StoreContext} from '../../context/StoreContext';
 import axios from 'axios';
 import {BASE_URL} from '../../config';
 
@@ -43,14 +44,6 @@ const HomeScreen = () => {
         console.log(`register error ${e}`);
       });
 
-    // fetch(`https://damiusite.com/example-damiu/api/depo`, {
-    //   headers: {Authorization: `Bearer ${userInfo.token}`},
-    // })
-    //   .then(response => response.json())
-    //   .then(json => setTesting(json))
-    //   .catch(error => console.error(error));
-    // console.log(testing);
-
     return () => {};
   }, []);
 
@@ -70,12 +63,18 @@ const HomeScreen = () => {
   const onPressLihatSemua = () => {
     console.warn('Lihat Semua');
   };
-  // const onPressDepo = () => {
-  //   console.warn('Lihat Depo');
-  // };
+  const onPressDepo = depo => {
+    console.warn('Lihat Depo');
+    navigation.navigate('Produk', {
+      nama: depo.depo_name,
+      alamat: depo.depo_city,
+      depo_id: depo.id,
+    });
+  };
 
   // Untuk Logout
-  const {userInfo, isLoading, logout} = useContext(AuthContext);
+  const {userInfo, isLoading, logout, listDepos, getListDepo} =
+    useContext(AuthContext);
 
   // Data Dummy Store
   // const listDepoDumy = [];
@@ -149,13 +148,14 @@ const HomeScreen = () => {
             source={depo}
             nama={depo.depo_name}
             alamat={depo.depo_city}
-            onPressDepo={() => {
-              navigation.navigate('Produk', {
-                nama: depo.depo_name,
-                alamat: depo.depo_city,
-                depo_id: depo.id,
-              });
-            }}
+            // onPressDepo={() => {
+            //   navigation.navigate('Produk', {
+            //     nama: depo.depo_name,
+            //     alamat: depo.depo_city,
+            //     depo_id: depo.id,
+            //   });
+            // }}
+            onPressDepo={() => onPressDepo(depo)}
           />
         ))}
       </ScrollView>
